@@ -7,9 +7,14 @@ var target: Vector2
 @export var drill: Node2D
 var nav_velocity: Vector2
 @export var hp_max: int
+@export var money_drop_base: int
 var hp_current: int
 var ded: bool = false
+var world: Node2D
+var lifetime: float
+
 func _ready():
+	lifetime = 0
 	if drill:
 		set_target(drill.global_position)
 	
@@ -17,6 +22,8 @@ func _ready():
 	$TextureProgressBar.value = hp_current
 	$TextureProgressBar.max_value = hp_max
 	$TextureProgressBar.visible = false
+	
+	$Label.visible=false
 
 func set_target(new_target: Vector2):
 	target = new_target
@@ -49,6 +56,9 @@ func hit(body):
 				remove_from_group("enemies")
 				# hide the health bar
 				$TextureProgressBar.visible = false
+				world.add_money(money_drop_base)
+				$Label.text = str(money_drop_base)+" $"
+				$Label.visible=true
 				add_child(deathTimer)
 				deathTimer.start()
 				ded = true
@@ -56,6 +66,7 @@ func hit(body):
 			
 
 func _physics_process(delta):
+	lifetime += delta
 	if not ded:
 		if not navigation.is_navigation_finished():
 			var movement_delta = speed * delta
@@ -74,6 +85,10 @@ func _physics_process(delta):
 		if distance_to_target < 30:
 			print("target reached")
 			queue_free()
+	else:
+		$Label.position.y-=100*delta
+		$Label.position.x = sin(lifetime*2)*15
+		
 
 
 

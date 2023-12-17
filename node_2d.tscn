@@ -24,10 +24,11 @@ viewport_path = NodePath("CanvasLayer/Panel/SubViewportContainer/SubViewport")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6jdq8"]
 size = Vector2(6775, 3778)
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("camera", "selectpreviewViewport", "selectPanel", "buildPanel", "tiles", "enemies")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("camera", "selectpreviewViewport", "moneylbl", "selectPanel", "buildPanel", "tiles", "enemies")]
 script = ExtResource("1_uplon")
 camera = NodePath("Camera2D")
 selectpreviewViewport = NodePath("CanvasLayer/Panel/SubViewportContainer/SubViewport")
+moneylbl = NodePath("CanvasLayer/TopBar/HBoxContainer/moneylbl")
 selectPanel = NodePath("CanvasLayer/Panel")
 buildPanel = NodePath("CanvasLayer/buildpanel")
 tiles = NodePath("TileMap")
@@ -38,6 +39,7 @@ drillprefab = ExtResource("4_4exlo")
 enemies = [NodePath("enemy"), NodePath("enemy2"), NodePath("enemy3"), NodePath("enemy4"), NodePath("enemy5"), NodePath("enemy6")]
 enemyPrefabs = Array[PackedScene]([ExtResource("13_t5alo"), ExtResource("16_34s7r"), ExtResource("8_i0i6c")])
 enemyprefab = ExtResource("13_t5alo")
+startingmoney = 1000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -271,6 +273,28 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="CanvasLayer/buildpanel/GridContainer/barrier4"]
 layout_mode = 2
 text = "Buy $50"
+
+[node name="TopBar" type="Panel" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/TopBar/HBoxContainer"]
+layout_mode = 2
+text = "Cash dollar: "
+
+[node name="moneylbl" type="Label" parent="CanvasLayer/TopBar/HBoxContainer"]
+layout_mode = 2
+text = "200,000,000$"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_6ubak")
