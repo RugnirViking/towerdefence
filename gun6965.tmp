@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2gdyfynta8h7"]
+
+[ext_resource type="Texture2D" uid="uid://lrbu3mps0jxg" path="res://towerbase.png" id="1_fwvlr"]
+[ext_resource type="Script" path="res://gun.gd" id="1_jjfx8"]
+[ext_resource type="PackedScene" uid="uid://dcycm4rdlhq3t" path="res://bullet.tscn" id="2_cnggx"]
+[ext_resource type="Texture2D" uid="uid://dupwm66sl3t1s" path="res://gun.png" id="2_ftewb"]
+
+[node name="gun" type="Node2D" node_paths=PackedStringArray("gun")]
+z_index = 1
+script = ExtResource("1_jjfx8")
+gun = NodePath("gun")
+bullet = ExtResource("2_cnggx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_fwvlr")
+
+[node name="gun" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ftewb")
+
+[node name="shotTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="timeout" from="shotTimer" to="." method="_on_shot_timer_timeout"]

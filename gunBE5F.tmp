@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2gdyfynta8h7"]
+
+[ext_resource type="Texture2D" uid="uid://lrbu3mps0jxg" path="res://towerbase.png" id="1_fwvlr"]
+[ext_resource type="Script" path="res://gun.gd" id="1_jjfx8"]
+[ext_resource type="Texture2D" uid="uid://dupwm66sl3t1s" path="res://gun.png" id="2_ftewb"]
+
+[node name="gun" type="Node2D" node_paths=PackedStringArray("gun")]
+script = ExtResource("1_jjfx8")
+gun = NodePath("gun")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fwvlr")
+
+[node name="gun" type="Sprite2D" parent="."]
+texture = ExtResource("2_ftewb")

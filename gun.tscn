@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2gdyfynta8h7"]
+
+[ext_resource type="Script" path="res://gun.gd" id="1_jjfx8"]
+[ext_resource type="PackedScene" uid="uid://dcycm4rdlhq3t" path="res://bullet.tscn" id="2_cnggx"]
+[ext_resource type="Texture2D" uid="uid://dlxqjmnrxig75" path="res://circlebase.png" id="3_jvg4u"]
+[ext_resource type="Texture2D" uid="uid://b172lggoukgwu" path="res://cannon.png" id="4_plitc"]
+
+[node name="gun" type="Node2D" node_paths=PackedStringArray("gun")]
+z_index = 1
+script = ExtResource("1_jjfx8")
+gun = NodePath("gun")
+bullet = ExtResource("2_cnggx")
+damge = 20
+firing_interval = 0.75
+range = 300
+bulletSize = 1.5
+bulletColor = Color(0.313726, 0.313726, 0.313726, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_jvg4u")
+
+[node name="gun" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("4_plitc")
+
+[node name="shotTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="shotTimer" to="." method="_on_shot_timer_timeout"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2r2wkfsmlq2q"]
+
+[ext_resource type="Texture2D" uid="uid://cuhexgr21xfpm" path="res://barrierbase2.png" id="1_wot3c"]
+
+[node name="barrier" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_wot3c")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+avoidance_enabled = false
+radius = 52.39
+vertices = PackedVector2Array(-42, -42, -42, 42, 42, 42, 42, -42)

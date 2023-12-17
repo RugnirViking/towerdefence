@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn7qgbk27y67s"]
+
+[ext_resource type="Texture2D" uid="uid://drmj05314q1rp" path="res://drill.png" id="1_iijsd"]
+[ext_resource type="Texture2D" uid="uid://84cg1fi8ya4" path="res://candle.png" id="2_t8jxm"]
+
+[node name="drill" type="Node2D"]
+modulate = Color(1, 0.65098, 0.65098, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_iijsd")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(8.03906, 8.03906)
+color = Color(1, 0.541176, 0.541176, 1)
+texture = ExtResource("2_t8jxm")

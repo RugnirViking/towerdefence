@@ -1,0 +1,37 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cdasjj72x23rj"]
+
+[ext_resource type="Texture2D" uid="uid://1e87xo5r2jrs" path="res://tileset.png" id="1_8tcsk"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_f72im"]
+vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 1.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oao4k"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cujs3"]
+texture = ExtResource("1_8tcsk")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/custom_data_0 = "Caesium Shaft"
+1:0/0 = 0
+1:0/0/custom_data_0 = "Caesium Ore"
+2:0/next_alternative_id = 2
+2:0/0 = 0
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_f72im")
+2:0/0/custom_data_0 = "Cavern Floor"
+2:0/1 = 1
+3:0/0 = 0
+3:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_oao4k")
+3:0/0/custom_data_0 = "Solid Rock"
+
+[resource]
+tile_size = Vector2i(64, 64)
+occlusion_layer_0/light_mask = 1
+navigation_layer_0/layers = 1
+custom_data_layer_0/name = "name"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_cujs3")
