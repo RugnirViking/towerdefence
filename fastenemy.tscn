@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b61lfthxdsgu8"]
+[gd_scene load_steps=10 format=3 uid="uid://b61lfthxdsgu8"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_wupvv"]
 [ext_resource type="Texture2D" uid="uid://cyoecn1fap3x5" path="res://lightning_fast_runner.png" id="2_xh1j6"]
@@ -10,6 +10,22 @@ size = Vector2(15, 42)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tkeml"]
 light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_p0qk5"]
+colors = PackedColorArray(1, 0, 0, 1, 0.75, 0, 0.3875, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xcl47"]
+gradient = SubResource("Gradient_p0qk5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d7wu4"]
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 134.83
+initial_velocity_max = 168.54
+gravity = Vector3(0, 98, 0)
+scale_max = 12.24
+color_ramp = SubResource("GradientTexture1D_xcl47")
 
 [node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation") groups=["enemy"]]
 script = ExtResource("1_wupvv")
@@ -53,6 +69,15 @@ tint_progress = Color(0, 0.776471, 0.0666667, 1)
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(7.54688, 7.54688)
 texture = ExtResource("4_ko6ic")
+
+[node name="DeathParticles" type="GPUParticles2D" parent="."]
+visible = false
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_d7wu4")
+texture = ExtResource("3_jcnpy")
+one_shot = true
+explosiveness = 0.65
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
